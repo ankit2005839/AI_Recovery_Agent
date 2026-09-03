@@ -317,8 +317,7 @@ export function runCase(pair: MockCasePair, now: Date, rand: () => number): Reco
   }
 
   result.currentState = state;
-  result.finalOutcome =
-    state === "RECOVERED" ? "RECOVERED" : state === "PROMISED" ? undefined : "UNRECOVERED";
+result.finalOutcome = (state as string) === "RECOVERED" ? "RECOVERED" : (state as any);
   return result;
 }
 
