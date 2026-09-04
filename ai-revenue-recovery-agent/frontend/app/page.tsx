@@ -9,12 +9,10 @@ import {
   Users,
   CheckCircle2,
   Clock,
-  AlertCircle,
   Play,
   Zap,
   Mail,
   MessageSquare,
-  ArrowUpRight,
   ShieldAlert,
   RefreshCw
 } from 'lucide-react';
@@ -28,7 +26,6 @@ import {
   CartesianGrid
 } from 'recharts';
 
-// Mock Data Fallbacks & Initial State
 const initialChartData = [
   { day: 'Mon', recovered: 2400, atRisk: 4000 },
   { day: 'Tue', recovered: 1398, atRisk: 3000 },
@@ -61,11 +58,9 @@ export default function DashboardPage() {
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://airecoveryagent-production.up.railway.app';
 
-  // Interactive Demo Trigger 1: Simulate Payment Failure
   const handleSimulateFailure = async () => {
     setLoadingAction('simulate');
     try {
-      // Optional call to real backend API if present
       await fetch(`${API_URL}/api/simulate-failure`, { method: 'POST' }).catch(() => null);
       
       const newCustomer = {
@@ -92,7 +87,6 @@ export default function DashboardPage() {
     }
   };
 
-  // Interactive Demo Trigger 2: Run AI Agent Loop
   const handleRunAIAgent = async () => {
     setLoadingAction('ai');
     try {
@@ -108,7 +102,6 @@ export default function DashboardPage() {
         ...prev
       ]);
 
-      // Update first pending customer to Recovered
       setCampaigns((prev) =>
         prev.map((c) => (c.status === 'Pending' ? { ...c, status: 'Recovered' } : c))
       );
@@ -119,7 +112,6 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans p-4 md:p-8">
-      {/* 1. TOP HACKATHON DEMO CONTROL BANNER */}
       <div className="mb-8 p-4 rounded-xl bg-slate-900/80 border border-slate-800 backdrop-blur-md flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center space-x-3">
           <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
@@ -150,7 +142,6 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* 2. HEADER & NAVIGATION */}
       <header className="flex flex-col md:flex-row md:items-center justify-between pb-8 border-b border-slate-800 mb-8 gap-4">
         <div className="flex items-center space-x-3">
           <div className="p-3 bg-gradient-to-tr from-emerald-500 to-indigo-600 rounded-xl shadow-lg shadow-indigo-500/10">
@@ -173,7 +164,6 @@ export default function DashboardPage() {
         </div>
       </header>
 
-      {/* 3. KPI SUMMARY CARDS GRID (4 COLUMNS) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 transition">
           <div className="flex justify-between items-start mb-3">
@@ -217,13 +207,8 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* 4. TWO-COLUMN MAIN CONTENT LAYOUT */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        {/* LEFT COLUMN (2/3 WIDTH): ANALYTICS & RECOVERY TABLE */}
         <div className="lg:col-span-2 space-y-8">
-          
-          {/* Analytics Chart */}
           <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800">
             <div className="flex items-center justify-between mb-6">
               <div>
@@ -255,7 +240,6 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Customer Recovery Table */}
           <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-base font-semibold text-white">Active Campaigns</h3>
@@ -310,7 +294,6 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* RIGHT COLUMN (1/3 WIDTH): LIVE AI AGENT STREAM FEED */}
         <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 flex flex-col h-full">
           <div className="flex items-center justify-between pb-4 border-b border-slate-800 mb-4">
             <div className="flex items-center space-x-2">
@@ -342,7 +325,6 @@ export default function DashboardPage() {
             ))}
           </div>
         </div>
-
       </div>
     </div>
   );
