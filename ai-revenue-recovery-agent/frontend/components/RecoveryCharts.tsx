@@ -55,7 +55,7 @@ export default function RecoveryCharts({ batch }: { batch: RecoveryBatch }) {
               formatter={(value: number, name: string) => [inr(value), name === "atRisk" ? "At risk" : "Recovered"]}
               contentStyle={{ fontSize: 12, borderRadius: 4, border: "1px solid #DCD7C8" }}
             />
-            <Bar dataKey="atRisk" fill="#E7EEF3" radius={[2, 2, 0, 0]} />
+            <Bar dataKey="atRisk" fill="#B0402F" radius={[2, 2, 0, 0]} />
             <Bar dataKey="recovered" fill="#1F7A5C" radius={[2, 2, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
