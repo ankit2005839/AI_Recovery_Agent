@@ -1,57 +1,28 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Merge into frontend/app/globals.css. Fonts are loaded via next/font in layout.tsx (see README-integration.md) —
+   this file only adds the CSS variables + a couple of dashboard-specific niceties. */
 
-html {
-  scroll-behavior: smooth;
+:root {
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 body {
-  background-color: #F6F4EE;
-  color: #10161F;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
-::selection {
-  background: #1C3D5A;
-  color: #F6F4EE;
+.font-mono {
+  font-family: var(--font-mono), ui-monospace, "SFMono-Regular", monospace;
 }
 
-/* Tabular figures everywhere numbers appear, like a real ledger */
-.tabular {
-  font-variant-numeric: tabular-nums;
+/* Slim, unobtrusive scrollbar for the agent stream + drawer */
+.overflow-y-auto {
+  scrollbar-width: thin;
+  scrollbar-color: #334155 transparent;
 }
-
-/* Custom, restrained scrollbar for the audit log panels */
-.thin-scroll::-webkit-scrollbar {
+.overflow-y-auto::-webkit-scrollbar {
   width: 6px;
 }
-.thin-scroll::-webkit-scrollbar-thumb {
-  background: #DCD7C8;
-  border-radius: 3px;
-}
-.thin-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-:focus-visible {
-  outline: 2px solid #1C3D5A;
-  outline-offset: 2px;
-}
-
-@keyframes fadein {
-  from { opacity: 0; transform: translateY(2px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slidein {
-  from { transform: translateX(16px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: #334155;
+  border-radius: 9999px;
 }
