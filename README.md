@@ -8,7 +8,7 @@ immutable, explainable audit trail behind every action.
 
 ---
 
-## 1. System Architecture & Track 03 Alignment
+## 1. System Architecture
 
 ```
 ai-revenue-recovery-agent/
